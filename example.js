@@ -2,10 +2,17 @@
 
 var treegen = require('./index');
 
-var tree = treegen({depth: 2, spread: 3});
-var targetFile = './example.json';
+const createTreeAndSaveToFile = (depth, spread, file) => {
+  const tree = treegen({depth, spread});
 
-var fs = require('fs');
-fs.writeFile(targetFile, JSON.stringify(tree, null, '\t'), function(err) {
+  const fs = require('fs');
+  fs.writeFile(file, JSON.stringify(tree, null, '\t'), function(err) {
     console.log(err || 'ok');
-});
+  });
+}
+
+
+
+createTreeAndSaveToFile(2, 3, './generated/example2_3.json');
+createTreeAndSaveToFile(4, 3, './generated/example4_3.json');
+createTreeAndSaveToFile(4, 7, './generated/example4_7.json');
